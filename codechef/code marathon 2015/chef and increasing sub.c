@@ -1,0 +1,111 @@
+#include<stdio.h>
+void merge(long long int a[],long long int min,long long int mid,long long int max)
+{
+    int i=min,j=mid+1,index=min,temp[max+1];
+    while(i<=mid && j<=max)
+    {
+        if(a[i]<a[j])
+        {
+            temp[index]=a[i];
+            index++;
+            i++;
+        }
+        else
+        {
+            temp[index]=a[j];
+            index++;
+            j++;
+        }
+    }
+    if(i<mid+1)
+    {
+        while(i<=mid)
+        {
+            temp[index]=a[i];
+            index++;
+            i++;
+        }
+    }
+    else
+    {
+        while(j<=max)
+        {
+            temp[index]=a[j];
+            index++;
+            j++;
+        }
+    }
+    for(i=min;i<index;i++)
+        a[i]=temp[i];
+}
+void merge_sort(long long int a[],long long int min,long long int max)
+{
+    int mid;
+    if(min<max)
+    {
+        mid=(max+min)/2;
+        merge_sort(a,min,mid);
+        merge_sort(a,mid+1,max);
+        merge(a,min,mid,max);
+    }
+}
+int main()
+{
+    int t;
+    scanf("%d",&t);
+    while(t--)
+    {
+        long long int n,q,i,a[200],temp,count=1,x,ans,mul1=1,mul2=1,j,count1;
+        scanf("%lld%lld",&n,&q);
+        for(i=0;i<n;i++)
+        scanf("%lld",&a[i]);
+        merge_sort(a,0,n-1);
+        for(i=0;i<n-1;i++)
+        {
+            if(a[i+1]!=a[i])
+            count++;
+        }
+        while(q--)
+        {
+            mul1=1;
+            mul2=1;
+            count1=count;
+            scanf("%lld",&x);
+            j=count1-x;
+            if(j<x)
+            {
+                i=j;
+                while(j>0)
+                {
+                    mul1*=count1;
+                    count1--;
+                    j--;
+                }
+                while(i>0)
+                {
+                    mul2*=i;
+                    i--;
+                }
+            }
+            else
+            {
+                j=x;
+                i=j;
+                 while(j>0)
+                {
+                    mul1*=count1;
+                    count1--;
+                    j--;
+                }
+                while(i>0)
+                {
+                    mul2*=i;
+                    i--;
+                }
+            }
+            ans=mul1/mul2;
+            ans%=1000000007;
+            printf("%lld\n",ans);
+        }
+    }
+}

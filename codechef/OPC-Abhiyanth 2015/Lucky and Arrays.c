@@ -1,0 +1,70 @@
+#include<stdio.h>
+int main()
+{
+    int n;
+    char stra[32],strb[32];
+    scanf("%d",&n);
+    while(n--)
+    {
+        int a,b,ans=0,i,j=0,k,temp;
+        scanf("%d%d",&a,&b);
+        for(i=31;i>=0;i--)
+        {
+            temp=a>>i;
+            if(temp&1)
+            {
+                stra[j]='1';
+                j++;
+            }
+            else
+            {
+                stra[j]='0';
+                j++;
+            }
+        }
+        j=0;
+        for(i=31;i>=0;i--)
+        {
+            temp=b>>i;
+            if(temp&1)
+            {
+                strb[j]='1';
+                j++;
+            }
+            else
+            {
+                strb[j]='0';
+                j++;
+            }
+        }
+        for(i=0;i<32;i++)
+        {
+            if(stra[i]=='1')
+            break;
+        }
+        for(k=0;k<32;k++)
+        {
+            if(strb[k]=='1')
+            break;
+        }
+        if(i<k)
+        {
+            for(j=i;j<32;j++)
+            {
+                if(stra[j]!=strb[j])
+                ans++;
+            }
+            printf("%d\n",ans);
+        }
+        else
+        {
+            for(j=k;j<32;j++)
+            {
+                if(stra[j]!=strb[j])
+                ans++;
+            }
+            printf("%d\n",ans);
+        }
+    }
+    return 0;
+}

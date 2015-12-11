@@ -1,0 +1,123 @@
+#include<stdio.h>
+#include<string.h>
+#include <stdlib.h>
+int main()
+{
+    int t;
+    scanf("%d",&t);
+    while(t--)
+    {
+        int n,i,j=0,c=0,k,l=0,c1=0,ans=0,m,cor,wrng,b[17],b1[17],w1[17],w[17],an[17];
+        char a[18];
+        scanf("%s",a);
+        scanf("%d",&k);
+        n=strlen(a)-1;
+        for(i=n;i>=0;i--)
+        {
+            b[j]=((((int)a[i]-48)*k)+c)%10;
+            c=(((int)a[i]-48)*k+c)/10;
+            j++;
+        }
+        if(c)
+        b[j]=c;
+        else
+            j--;
+         for(i=n;i>=0;i--)
+        {
+            if(((int)a[i]-48)==k)
+            {
+                w[l]=(((int)a[i]-48)+k+c1)%10;
+                c1=(((int)a[i]-48)+k+c1)/10;
+            }
+            else
+            {
+                w[l]=(((int)a[i]-48)*k+c1)%10;
+                c1=(((int)a[i]-48)*k+c1)/10;
+            }
+            l++;
+        }
+        if(c1)
+        w[l]=c1;
+        else
+            l--;
+        m=0;
+        c=0;
+        for(i=0;i<=l;i++)
+        {
+
+            an[i]=(b[i]+w[i]+c)%10;
+            c=(b[i]+w[i]+c)/10;
+        }
+        if(j>l)
+        {
+            for(i=l+1;i<=j;i++)
+        {
+            an[i]=(b[i]+c)%10;
+            c=(b[i]+c)/10;
+        }
+        }
+        if(c)
+        printf("%d",c);
+        for(i=j;j>=0;i--)
+            printf("%d",an[i]);
+        printf("\n");
+       /* for(i=j;i>=0;i--)
+        {
+            b1[m]=b[i];
+            printf("%d",b1[m]);
+            m++;
+        }
+        printf("\n");
+        m=0;
+         for(i=l;i>=0;i--)
+        {
+            w1[m]=w[i];
+            printf("%d",w1[m]);
+            m++;
+        }
+        c1=0;
+        if(j>=l)
+        i=j;
+        else
+        i=l;
+        l++;
+        j++;
+        m=0;*/
+        /*l++;
+        j++;
+        i=0;
+        m=0;
+            while(l&&j)
+            {
+                an[m]=(b[i]+w[i]+c1)%10;
+                c1=(b[i]+w[i]+c1)/10;
+                j--;
+                l--;
+                i++;
+                 printf("%d  ",an[m]);
+                m++;
+
+            }
+            while(j)
+            {
+                an[m]=(b[i]+c1)%10;
+                c1=(b[i]+c1)/10;
+                j--;
+                i--;
+                m++;
+            }
+             while(l)
+            {
+                an[m]=(w[i]+c1)%10;
+                c1=(w[i]+c1)/10;
+                l--;
+                i--;
+                m++;
+            }
+        if(c1)
+        an[m]=c1;
+        for(i=m;i>=0;i--)
+            printf("%d",an[i]);*/
+    }
+    return 0;
+}
